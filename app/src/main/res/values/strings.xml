@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Dog Breed Quiz App</string>
+    <string name="finishTitle">Finish</string>
+    <string name="image_of_dog_one">Image of Dog One</string>
+    <string name="image_of_dog_two">Image of Dog Two</string>
+    <string name="image_of_dog_three">Image of Dog Three</string>
+    <string name="select_the_dog_which_belong_to_breed">Select the Dog Which Belong to Breed Affenpinscher</string>
+    <string name="question">Select the Dog Which Belong to Breed %1$s</string>
+    <string name="correct">CORRECT</string>
+    <string name="wrong">WRONG</string>
+    <string name="submit">SUBMIT</string>
+    <string name="next">NEXT</string>
+    <string name="finish">FINISH</string>
+    <string name="msg">Hooray !</string>
+    <string name="dummyText">You Answered 9 out 10 Questions Correctly</string>
+    <string name="finishResult">You Answered %1$d out %2$d Questions Correctly</string>
+</resources>
