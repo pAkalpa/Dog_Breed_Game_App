@@ -16,7 +16,7 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val breedList: List<String> = listOf("Afghan Hound","Beagle","Chihuahua","Dingo",
-        "English Foxhound","French Bulldog")
+        "English Foxhound","French Bulldog","Giant schnauzer")
     private  val breedImgMap: HashMap<Int,List<String>> = HashMap()
 
     private var tvQuestion: TextView? = null
@@ -36,8 +36,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var imgTwo = ""
     private var imgThree = ""
     private var userChoice = ""
+    private var correctImgArray: List<String>? = null
     private var submitted: Boolean = false
-    private var imgCountList = arrayListOf(0,0,0,0,0,0)
+    private var imgCountList = arrayListOf(0,0,0,0,0,0,0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,12 +60,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnNext!!.setOnClickListener(this)
         btnFinish!!.setOnClickListener(this)
 
-        breedImgMap[0] = listOf("img1", "img2", "img3")
-        breedImgMap[1] = listOf("img4", "img5", "img6")
-        breedImgMap[2] = listOf("img7", "img8", "img9")
-        breedImgMap[3] = listOf("img10", "img11", "img12")
-        breedImgMap[4] = listOf("img13", "img14", "img15")
-        breedImgMap[5] = listOf("img16", "img17", "img18")
+        breedImgMap[0] = listOf("img1", "img2", "img3", "img19", "img20", "img21", "img22", "img23", "img24","img25")
+        breedImgMap[1] = listOf("img4", "img5", "img6", "img26", "img27", "img28", "img29", "img30", "img31", "img32")
+        breedImgMap[2] = listOf("img7", "img8", "img9", "img33", "img34", "img35", "img36", "img37", "img38", "img39")
+        breedImgMap[3] = listOf("img10", "img11", "img12", "img40", "img41", "img42", "img43", "img44", "img45", "img46")
+        breedImgMap[4] = listOf("img13", "img14", "img15", "img47", "img48", "img49", "img50", "img51", "img52", "img53")
+        breedImgMap[5] = listOf("img16", "img17", "img18", "img54", "img55", "img56", "img57", "img58", "img59", "img60")
+        breedImgMap[6] = listOf("img61", "img62", "img63", "img64", "img65", "img66", "img67", "img68", "img69", "img70")
 
 
         btnFinish!!.visibility = View.GONE
@@ -90,7 +92,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         while (iterator.hasNext()) {
             iterator.next()
             do {
-                randomNum = (0 until breedImgMap.size-1).random()
+                randomNum = (0 until breedImgMap.size).random()
             } while (randomNum in arrayOfNum)
             iterator.set(randomNum)
         }
@@ -98,6 +100,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         questionNum = arrayOfNum[Random.nextInt(arrayOfNum.size)]
 
+        correctImgArray = breedImgMap[questionNum]
         tvQuestion!!.text = getString(R.string.question, breedList[questionNum])
 
         val listSize = breedImgMap.getValue(0).size
@@ -134,17 +137,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         imgCountList[5] = 0
                     }
                 }
+                6 -> {
+                    if (imgCountList[6] == listSize) {
+                        imgCountList[6] = 0
+                    }
+                }
             }
         }
 
         when {
-            imgCountList[arrayOfNum[0]] == 3 -> {
+            imgCountList[arrayOfNum[0]] == 10 -> {
                 imgCountList[arrayOfNum[0]] = 0
             }
-            imgCountList[arrayOfNum[1]] == 3 -> {
+            imgCountList[arrayOfNum[1]] == 10 -> {
                 imgCountList[arrayOfNum[1]] = 0
             }
-            imgCountList[arrayOfNum[2]] == 3 -> {
+            imgCountList[arrayOfNum[2]] == 10 -> {
                 imgCountList[arrayOfNum[2]] = 0
             }
         }
@@ -182,6 +190,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         } else if (imgName !in breedList[questionNum]){
             tvResult!!.text = getString(R.string.wrong)
             tvResult!!.setTextColor(Color.parseColor("#FFFF4444"))
+            Log.d("Correct Img Array", correctImgArray.toString())
+            Log.d("Cor ","$imgOne $imgTwo $imgThree")
+
+            when {
+                correctImgArray!!.contains(imgOne) -> {
+                    ivOne!!.background = ContextCompat.getDrawable(this,R.drawable.correct_border)
+                }
+                correctImgArray!!.contains(imgTwo) -> {
+                    ivTwo!!.background = ContextCompat.getDrawable(this,R.drawable.correct_border)
+                }
+                correctImgArray!!.contains(imgThree) -> {
+                    ivThree!!.background = ContextCompat.getDrawable(this,R.drawable.correct_border)
+                }
+            }
+
             when (userChoice) {
                 imgOne -> {
                     ivOne!!.background = ContextCompat.getDrawable(this,R.drawable.wrong_border)
